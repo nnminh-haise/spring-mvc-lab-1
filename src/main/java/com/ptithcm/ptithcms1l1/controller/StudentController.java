@@ -32,30 +32,37 @@ public class StudentController {
     @RequestMapping()
     public String index(ModelMap model) {
         model.addAttribute("message", "Bạn gọi index()");
-        return "student-mgr";
+        return "student/student-mgr";
     }
 
     @RequestMapping(params = "btnInsert")
-    public String insert(ModelMap model) {
-        model.addAttribute("message", "Bạn gọi insert()");
-        return "student-mgr";
+    public String insert(
+            ModelMap model,
+            @RequestParam("name") String name,
+            @RequestParam("mark") Double mark,
+            @RequestParam("major") String major
+    ) {
+        model.addAttribute("name", name);
+        model.addAttribute("mark", mark);
+        model.addAttribute("major", major);
+        return "student/success";
     }
 
     @RequestMapping(params = "btnUpdate")
     public String update(ModelMap model) {
         model.addAttribute("message", "Bạn gọi update()");
-        return "student-mgr";
+        return "student/student-mgr";
     }
 
     @RequestMapping(params = "btnDelete")
     public String delete(ModelMap model) {
         model.addAttribute("message", "Bạn gọi delete()");
-        return "student-mgr";
+        return "student/student-mgr";
     }
 
     @RequestMapping(params = "InkEdit")
     public String edit(ModelMap model) {
         model.addAttribute("message", "Bạn gọi edit()");
-        return "student-mgr";
+        return "student/student-mgr";
     }
 }
