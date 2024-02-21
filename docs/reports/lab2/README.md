@@ -456,4 +456,155 @@ And the result:
 
 ![student manager insert functionalty result](img/student-manager-insert-result.png)
 
+## Exercise 5
 
+Create new package `bean` and new `Student.java` class inside the `bean` package:
+
+`Student.java`
+
+```java
+package com.ptithcm.ptithcms1l1.bean;
+
+public class Student {
+    private String name;
+    private Double mark;
+    private String major;
+
+    public Student() {
+
+    }
+
+    public Student(String name, Double mark, String major) {
+        this.name = name;
+        this.mark = mark;
+        this.major = major;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getMark() {
+        return mark;
+    }
+
+    public void setMark(Double mark) {
+        this.mark = mark;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+}
+```
+
+Update the `update` method inside the `StudentController` controller:
+
+`StudentController.java`
+
+```java
+package com.ptithcm.ptithcms1l1.controller;
+
+import com.ptithcm.ptithcms1l1.bean.Student;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+
+@Controller
+@RequestMapping("/student-mgr")
+public class StudentController {
+    @RequestMapping(value = "/student", method = RequestMethod.GET)
+    public String showForm() {
+        return "student/form";
+    }
+
+    @RequestMapping(value = "/student", method = RequestMethod.POST)
+    public String saveData(HttpServletRequest request) {
+        String name = request.getParameter("name");
+        String mark = request.getParameter("mark");
+        String major = request.getParameter("major");
+
+        request.setAttribute("name", name);
+        request.setAttribute("mark", mark);
+        request.setAttribute("major", major);
+
+        return "student/success";
+    }
+
+    @RequestMapping()
+    public String index(ModelMap model) {
+        model.addAttribute("message", "Bạn gọi index()");
+        return "student/student-mgr";
+    }
+
+    @RequestMapping(params = "btnInsert")
+    public String insert(
+            ModelMap model,
+            @RequestParam("name") String name,
+            @RequestParam("mark") Double mark,
+            @RequestParam("major") String major
+    ) {
+        model.addAttribute("name", name);
+        model.addAttribute("mark", mark);
+        model.addAttribute("major", major);
+        return "student/success";
+    }
+
+    @RequestMapping(params = "btnUpdate")
+    public String update(ModelMap model, Student student) {
+        model.addAttribute("student", student);
+        return "student/success2";
+    }
+
+    @RequestMapping(params = "btnDelete")
+    public String delete(ModelMap model) {
+        model.addAttribute("message", "Bạn gọi delete()");
+        return "student/student-mgr";
+    }
+
+    @RequestMapping(params = "InkEdit")
+    public String edit(ModelMap model) {
+        model.addAttribute("message", "Bạn gọi edit()");
+        return "student/student-mgr";
+    }
+}
+```
+
+Then create new `success2.jsp` view:
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>STUDENT</title>
+</head>
+<body>
+    <h1>THÔNG TIN SINH VIÊN PTITHCM</h1>
+    <ul>
+        <li>HỌ VÀ TÊN: ${student.name}</li>
+        <li>ĐIỂM TB: ${student.mark}</li>
+        <li>CHUYÊN NGÀNH: ${student.major}</li>
+    </ul>
+</body>
+</html>
+```
+
+We will go to `http://localhost:8080/PTITHCMS1L1_war_exploded/student-mgr.htm` to see the result:
+
+![Updated student manager](img/updated-student-manager.png)
+
+Filling the form and press "Update" button:
+
+![Student information at success 2](img/student-infor-success2.png)

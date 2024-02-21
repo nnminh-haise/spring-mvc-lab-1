@@ -1,5 +1,6 @@
 package com.ptithcm.ptithcms1l1.controller;
 
+import com.ptithcm.ptithcms1l1.bean.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,9 +50,9 @@ public class StudentController {
     }
 
     @RequestMapping(params = "btnUpdate")
-    public String update(ModelMap model) {
-        model.addAttribute("message", "Bạn gọi update()");
-        return "student/student-mgr";
+    public String update(ModelMap model, Student student) {
+        model.addAttribute("student", student);
+        return "student/success2";
     }
 
     @RequestMapping(params = "btnDelete")
