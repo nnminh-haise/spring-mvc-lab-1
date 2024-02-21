@@ -5,7 +5,7 @@
     <title>Spring MVC</title>
 </head>
 <body>
-    <h1>THÔNG TIN SINH VIÊN PTITHCM</h1>
+    <h3>THÔNG TIN SINH VIÊN PTITHCM</h3>
     <ul>
         <li>HỌ VÀ TÊN: ${name}</li>
         <li>ĐIỂM TB: ${mark}</li>
