@@ -8,18 +8,18 @@
     <form action="student-mgr.htm" method="post">
         ${message}
         <div>Họ và tên</div>
-        <input name="name">
+        <input name="name" value="${student.name}">
 
         <div>Điểm trung bình</div>
-        <input name="mark">
+        <input name="mark" value="${student.mark}">
 
         <div>Chuyên ngành</div>
         <label>
-            <input name="major" type="radio" value="APP">
+            <input name="major" type="radio" value="APP" ${student.major == 'APP'?'checked':''}/>
             Ứng dụng phần mềm
         </label>
         <label>
-            <input name="major" type="radio" value="WEB">
+            <input name="major" type="radio" value="WEB" ${student.major == 'WEB'?'checked':''}/>
             Thiết kế trang web
         </label>
 
