@@ -30,9 +30,10 @@ public class StudentController {
         return "student/success";
     }
 
-    @RequestMapping()
+    @RequestMapping("index")
     public String index(ModelMap model) {
-        model.addAttribute("message", "Bạn gọi index()");
+        Student student = new Student("Nguyễn Văn Tèo", 9.5, "WEB");
+        model.addAttribute("student", student);
         return "student/student-mgr";
     }
 
