@@ -27,6 +27,16 @@
         <c:if test="${bean.mark >= 9}">
             <li><label>Danh hiệu:</label> ONG VÀNG</li>
         </c:if>
+        <li>
+            <label>Xếp loại: </label>
+            <c:choose>
+                <c:when test="${bean.mark < 5}">Yếu</c:when>
+                <c:when test="${bean.mark < 6.5}">Trung bình</c:when>
+                <c:when test="${bean.mark < 7.5}">Khá</c:when>
+                <c:when test="${bean.mark < 9}">Giỏi</c:when>
+                <c:otherwise>Xuất sắc</c:otherwise>
+            </c:choose>
+        </li>
     </ul>
     <ul>
         <li><label>Họ và tên: </label>${list[0].name}</li>
@@ -35,6 +45,16 @@
         <c:if test="${list[0].mark >= 9}">
             <li><label>Danh hiệu:</label> ONG VÀNG</li>
         </c:if>
+        <li>
+            <label>Xếp loại: </label>
+            <c:choose>
+                <c:when test="${list[0].mark < 5}">Yếu</c:when>
+                <c:when test="${list[0].mark < 6.5}">Trung bình</c:when>
+                <c:when test="${list[0].mark < 7.5}">Khá</c:when>
+                <c:when test="${list[0].mark < 9}">Giỏi</c:when>
+                <c:otherwise>Xuất sắc</c:otherwise>
+            </c:choose>
+        </li>
     </ul>
     <ul>
         <li><label>Họ và tên: </label>${map.NV_C.name}</li>
@@ -43,6 +63,16 @@
         <c:if test="${map.NV_C.mark >= 9}">
             <li><label>Danh hiệu:</label> ONG VÀNG</li>
         </c:if>
+        <li>
+            <label>Xếp loại: </label>
+            <c:choose>
+                <c:when test="${map.NV_C.mark < 5}">Yếu</c:when>
+                <c:when test="${map.NV_C.mark < 6.5}">Trung bình</c:when>
+                <c:when test="${map.NV_C.mark < 7.5}">Khá</c:when>
+                <c:when test="${map.NV_C.mark < 9}">Giỏi</c:when>
+                <c:otherwise>Xuất sắc</c:otherwise>
+            </c:choose>
+        </li>
     </ul>
 </body>
 </html>
