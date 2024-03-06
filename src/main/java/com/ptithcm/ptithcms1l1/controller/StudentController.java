@@ -65,6 +65,25 @@ public class StudentController {
         return "student/bai1";
     }
 
+    @RequestMapping(value = "index2")
+    public String index2(ModelMap model) {
+        Student s1 = new Student("Nguyen Van A", 9.5, "Ung dung phan mem");
+        Student s2 = new Student("Nguyen Van B", 8.5, "Thiet ke trang web");
+        Student s3 = new Student("Nguyen Van C", 7.5, "Thiet ke trang web");
+
+        List<Student> list = List.of(s2, s3);
+
+        Map<String, Student> map = new HashMap<>();
+        map.put("NV_B", s2);
+        map.put("NV_C", s3);
+
+        model.addAttribute("bean", s1);
+        model.addAttribute("list", list);
+        model.addAttribute("map", map);
+
+        return "student/index2";
+    }
+
     @RequestMapping(params = "btnInsert")
     public String insert(
             ModelMap model,
