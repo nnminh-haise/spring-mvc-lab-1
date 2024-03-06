@@ -496,4 +496,145 @@ Go to `/student-mgr/index2.htm` to see result:
 
 ## Exercise 5
 
+Showing a list of product.
 
+Create a new `Product` bean:
+
+`Product.java`
+
+```java
+package com.ptithcm.ptithcms1l1.bean;
+
+public class Product {
+    private String name;
+    private Double unitPrice;
+    private Double discount;
+
+    public Product() {
+    }
+
+    public Product(String name, Double unitPrice, Double discount) {
+        this.name = name;
+        this.unitPrice = unitPrice;
+        this.discount = discount;
+    }
+
+    public Double getNewPrice() {
+        return unitPrice * (1 - discount);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+}
+```
+
+Create a new `ProductController`:
+
+`ProductController.java`
+
+```java
+package com.ptithcm.ptithcms1l1.controller;
+
+import com.ptithcm.ptithcms1l1.bean.Product;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Controller
+@RequestMapping("product")
+public class ProductController {
+    @RequestMapping("list")
+    public String list(ModelMap model) {
+        List<Product> list = new ArrayList<>();
+        list.add(new Product("Nokia Star", 1000.0, 0.05));
+        list.add(new Product("iPhone 9", 1500.0, 0.01));
+        list.add(new Product("Samsung Galaxy N10", 750.0, 0.15));
+        list.add(new Product("Sony Experia", 500.0, 0.0));
+
+        model.addAttribute("prod", list);
+
+        return "product/list";
+    }
+}
+```
+
+Create a new `list.jsp` view inside the `views/product`
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="f" %>
+<html>
+<head>
+    <title>Spring MVC</title>
+    <base href="${pageContext.servletContext.contextPath}/">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            line-height: 25px;
+            border: 1px solid black;
+            padding: 5px;
+        }
+        th {
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>EL & JSTL</h1>
+    <table>
+        <tr>
+            <th>Tên SP</th>
+            <th>Giá cũ</th>
+            <th>Giảm giá</th>
+            <th>Giá mới</th>
+        </tr>
+        <c:forEach var="p" items="${prods}">
+        <tr>
+            <td>${p.name}</td>
+            <td>
+                <f:formatNumber value="${p.unitPrice}" type="currency"/>
+            </td>
+            <td>
+                <f:formatNumber value="${p.discount}" type="percent"/>
+            </td>
+            <td>
+                <f:formatNumber value="${p.newPrice}" type="currency"/>
+            </td>
+        </tr>
+        </c:forEach>
+    </table>
+</body>
+</html>
+```
+
+Go to `/product/list.htm` to see the result
+
+![](img/Screenshot%202024-03-06%20at%2015.31.17.png)
