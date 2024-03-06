@@ -2,6 +2,7 @@ package com.ptithcm.ptithcms1l1.controller;
 
 import com.ptithcm.ptithcms1l1.bean.Major;
 import com.ptithcm.ptithcms1l1.bean.Student;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +21,10 @@ import java.util.Map;
 @Controller
 @RequestMapping("/student-mgr")
 public class StudentController {
+
+    @Autowired
+    private ServletContext application;
+
     @RequestMapping(value = "/student", method = RequestMethod.GET)
     public String showForm() {
         return "student/form";
@@ -36,11 +43,26 @@ public class StudentController {
         return "student/success";
     }
 
-    @RequestMapping("index")
-    public String index(ModelMap model) {
-        Student student = new Student("Nguyễn Văn Tèo", 9.5, "WEB");
-        model.addAttribute("student", student);
-        return "student/student2";
+    @RequestMapping(value = "index")
+    public String index(
+            HttpServletRequest request,
+            HttpSession session
+    ) {
+        application.setAttribute("name", "Nguyen Nhat Minh");
+        application.setAttribute("level", 2);
+        application.setAttribute("photo", "images/qwqp2.jpeg");
+
+        session.setAttribute("name", "Le Hoang Khang");
+        session.setAttribute("level", 4);
+        session.setAttribute("photo", "images/qwqp3.jpg");
+
+        request.setAttribute("name", "Mai Thuy Quynh Giang");
+        request.setAttribute("level", 3);
+        request.setAttribute("photo","images/qwqp.jpeg");
+
+        session.setAttribute("salary", 1000);
+
+        return "student/bai1";
     }
 
     @RequestMapping(params = "btnInsert")
