@@ -1,13 +1,13 @@
 package com.ptithcm.ptithcms1l1.bean;
 
-public class User {
+public class UserLab5 {
     private String username;
     private String password;
 
-    public User() {
+    public UserLab5() {
     }
 
-    public User(String username, String password) {
+    public UserLab5(String username, String password) {
         this.username = username;
         this.password = password;
     }

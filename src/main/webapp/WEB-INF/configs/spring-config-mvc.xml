@@ -18,7 +18,7 @@
     <context:annotation-config />
     <mvc:annotation-driven/>
 
-    <bean id="user" class="com.ptithcm.ptithcms1l1.bean.User">
+    <bean id="userLab5" class="com.ptithcm.ptithcms1l1.bean.UserLab5">
         <property name="username" value="ptithcm"/>
         <property name="password" value="123456"/>
     </bean>
@@ -65,8 +65,7 @@
 
     <bean id="transactionManager"
           class="org.springframework.orm.hibernate4.HibernateTransactionManager"
-          p:sessionFactory-ref="sessionFactory">
-    </bean>
+          p:sessionFactory-ref="sessionFactory"/>
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!-- Cấu hình view -->
@@ -78,7 +77,7 @@
     <context:component-scan base-package="com.ptithcm.ptithcms1l1.controller"/>
     <context:component-scan base-package="com.ptithcm.ptithcms1l1.service"/>
     <context:component-scan base-package="com.ptithcm.ptithcms1l1.bean"/>
-    <context:component-scan base-package="com.ptithcm.ptithcms1l1.model"/>
+<!--    <context:component-scan base-package="com.ptithcm.ptithcms1l1.model"/>-->
 
 
 </beans>

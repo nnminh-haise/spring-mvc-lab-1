@@ -1,6 +1,6 @@
 package com.ptithcm.ptithcms1l1.controller;
 
-import com.ptithcm.ptithcms1l1.bean.User;
+import com.ptithcm.ptithcms1l1.bean.UserLab5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/home")
 public class HomeController {
     @Autowired
-    private User user;
+    private UserLab5 userLab5;
 
     @RequestMapping("index")
     public String index(ModelMap model) {
@@ -19,7 +19,7 @@ public class HomeController {
     }
 
     @ModelAttribute("user")
-    public User getUser() {
-        return this.user;
+    public UserLab5 getUser() {
+        return this.userLab5;
     }
 }

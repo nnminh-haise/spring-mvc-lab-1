@@ -50,7 +50,8 @@ At this step, the `User` model will not be considered as a Bean. Therefore, you 
 So, you need to declare the `User` bean inside a configuration file. Here, I'll configure it inside the `spring-config-mvc.xml` file.
 
 ```xml
-<bean id="user" class="com.ptithcm.ptithcms1l1.bean.User">
+
+<bean id="user" class="com.ptithcm.ptithcms1l1.bean.UserLab5">
     <property name="username" value="ptithcm"/>
     <property name="password" value="123456"/>
 </bean>
